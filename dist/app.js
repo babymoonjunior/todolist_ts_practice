@@ -1,2 +1,3 @@
 "use strict";
-console.log("Hello TodoList App");
+const btnEl = document.getElementById("btn");
+console.log(btnEl);
