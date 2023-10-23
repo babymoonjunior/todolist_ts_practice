@@ -1,6 +1,8 @@
 "use strict";
-const btnEl = document.getElementById("btn");
 const inputEl = document.getElementById("input");
-btnEl.addEventListener("click", function () {
+const formEl = document.querySelector("form");
+formEl.addEventListener("submit", saveData);
+function saveData(e) {
+    e.preventDefault();
     console.log(inputEl.value);
-});
+}
