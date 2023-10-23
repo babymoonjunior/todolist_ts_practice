@@ -1,3 +1,6 @@
 "use strict";
 const btnEl = document.getElementById("btn");
-console.log(btnEl);
+const inputEl = document.getElementById("input");
+btnEl.addEventListener("click", function () {
+    console.log(inputEl.value);
+});
