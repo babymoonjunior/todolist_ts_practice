@@ -19,6 +19,11 @@ function createList(task) {
     const liEl = document.createElement("li");
     const checkboxEl = document.createElement("input");
     checkboxEl.type = "checkbox";
+    checkboxEl.checked = task.completed;
+    checkboxEl.addEventListener("change", function () {
+        task.completed = checkboxEl.checked;
+        updateData();
+    });
     liEl.append(task.name);
     liEl.append(checkboxEl);
     listEl.append(liEl);
@@ -29,4 +34,7 @@ function readData() {
     if (myList == null)
         return [];
     return JSON.parse(myList);
+}
+function updateData() {
+    localStorage.setItem("myList", JSON.stringify(tasks));
 }

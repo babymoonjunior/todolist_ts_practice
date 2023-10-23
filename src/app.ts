@@ -26,6 +26,12 @@ function createList(task:Task){
     const liEl = document.createElement("li")
     const checkboxEl = document.createElement("input")
     checkboxEl.type = "checkbox"
+    checkboxEl.checked = task.completed
+    checkboxEl.addEventListener("change",function(){
+        task.completed = checkboxEl.checked
+        updateData()
+    })
+
     liEl.append(task.name)
     liEl.append(checkboxEl)
     listEl.append(liEl)
@@ -36,4 +42,8 @@ function readData():Task[]{
     const myList = localStorage.getItem("myList")
     if(myList == null) return []
     return JSON.parse(myList)
+}
+
+function updateData(){
+    localStorage.setItem("myList",JSON.stringify(tasks))
 }
