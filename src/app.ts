@@ -8,7 +8,8 @@ interface Task{
     completed:boolean
 }
 
-const tasks:Task[]=[]
+const tasks:Task[]=readData()
+tasks.forEach(createList)
 
 function saveData(e:SubmitEvent){
     e.preventDefault()
@@ -18,8 +19,7 @@ function saveData(e:SubmitEvent){
     }
     createList(newTask)
     tasks.push(newTask)
-    console.log(tasks);
-    
+    localStorage.setItem("myList",JSON.stringify(tasks))
 }
 
 function createList(task:Task){
@@ -30,4 +30,10 @@ function createList(task:Task){
     liEl.append(checkboxEl)
     listEl.append(liEl)
     inputEl.value = ""
+}
+
+function readData():Task[]{
+    const myList = localStorage.getItem("myList")
+    if(myList == null) return []
+    return JSON.parse(myList)
 }

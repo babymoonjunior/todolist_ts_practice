@@ -3,7 +3,8 @@ const inputEl = document.getElementById("input");
 const formEl = document.querySelector("form");
 const listEl = document.getElementById("list");
 formEl.addEventListener("submit", saveData);
-const tasks = [];
+const tasks = readData();
+tasks.forEach(createList);
 function saveData(e) {
     e.preventDefault();
     const newTask = {
@@ -12,7 +13,7 @@ function saveData(e) {
     };
     createList(newTask);
     tasks.push(newTask);
-    console.log(tasks);
+    localStorage.setItem("myList", JSON.stringify(tasks));
 }
 function createList(task) {
     const liEl = document.createElement("li");
@@ -22,4 +23,10 @@ function createList(task) {
     liEl.append(checkboxEl);
     listEl.append(liEl);
     inputEl.value = "";
+}
+function readData() {
+    const myList = localStorage.getItem("myList");
+    if (myList == null)
+        return [];
+    return JSON.parse(myList);
 }
